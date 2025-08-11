@@ -5,35 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Folders Navigation (Responsive Image Map)</title>
     <style>
-      /* --- Drop-in styles (safe to paste into your existing CSS) --- */
       .map-wrap { max-width: 100%; }
       .map-wrap img { max-width: 100%; height: auto; display: block; }
-      /* Optional: keep the image crisp on high-DPI displays */
       img { image-rendering: -webkit-optimize-contrast; }
     </style>
   </head>
   <body>
-    <!--
-      👉 HOW TO MERGE INTO YOUR EXISTING PAGE
-      1) Paste the <div class="map-wrap">…</div> block wherever your image map lives now.
-      2) Paste the <script> at the end of your <body> (right before </body>).
-      3) Keep your original pixel coords in data-original-coords; the script will scale them.
-    -->
-
     <main>
       <div class="map-wrap">
         <img id="foldersNav" src="Folders-Navigation-Notion-V2.jpg" alt="Folders Navigation" usemap="#FoldersNavigationNotionV2jpg" />
 
         <map name="FoldersNavigationNotionV2jpg">
-          <!-- Keep your originals in data-original-coords; coords attribute is overwritten at runtime. -->
-          <area shape="rect" alt="" title="" data-original-coords="259,3,794,185"  coords="259,3,794,185"  href="https://www.notion.so/23155cb7914381258ff5e67b18647feb?pvs=21" />
-          <area shape="rect" alt="" title="" data-original-coords="2202,31,2698,222" coords="2202,31,2698,222" href="https://www.notion.so/habits-23355cb79143819ba053c5c75c77613e" />
-          <area shape="rect" alt="" title="" data-original-coords="1040,105,1509,276" coords="1040,105,1509,276" href="https://www.notion.so/23155cb7914381d286bdcf8ca7546424?pvs=21" />
-          <area shape="rect" alt="" title="" data-original-coords="1708,158,2142,322" coords="1708,158,2142,322" href="https://www.notion.so/23455cb791438169bd18e93ccb3a8c70?pvs=21" />
-          <area shape="rect" alt="" title="" data-original-coords="576,225,1036,444" coords="576,225,1036,444" href="https://www.notion.so/23155cb791438091a056d2c59a823bc7?pvs=21" />
-          <area shape="rect" alt="" title="" data-original-coords="1303,330,1874,537" coords="1303,330,1874,537" href="https://www.notion.so/Sunsama-Workspace-24055cb79143804a95dede3d33d4eb15" />
-          <area shape="rect" alt="" title="" data-original-coords="1972,397,2517,641" coords="1972,397,2517,641" href="https://www.notion.so/Content-Planner-24855cb7914380d8931ff266451e75df?pvs=21" />
-          <area shape="rect" alt="" title="" data-original-coords="12,247,514,525"  coords="12,247,514,525"  href="https://www.notion.so/Resources-23155cb7914381a380f9e8af1107c381?pvs=21" />
+          <area shape="rect" data-original-coords="259,3,794,185"  coords="259,3,794,185"  href="https://www.notion.so/23155cb7914381258ff5e67b18647feb?pvs=21" target="_top" />
+          <area shape="rect" data-original-coords="2202,31,2698,222" coords="2202,31,2698,222" href="https://www.notion.so/habits-23355cb79143819ba053c5c75c77613e" target="_top" />
+          <area shape="rect" data-original-coords="1040,105,1509,276" coords="1040,105,1509,276" href="https://www.notion.so/23155cb7914381d286bdcf8ca7546424?pvs=21" target="_top" />
+          <area shape="rect" data-original-coords="1708,158,2142,322" coords="1708,158,2142,322" href="https://www.notion.so/23455cb791438169bd18e93ccb3a8c70?pvs=21" target="_top" />
+          <area shape="rect" data-original-coords="576,225,1036,444" coords="576,225,1036,444" href="https://www.notion.so/23155cb791438091a056d2c59a823bc7?pvs=21" target="_top" />
+          <area shape="rect" data-original-coords="1303,330,1874,537" coords="1303,330,1874,537" href="https://www.notion.so/Sunsama-Workspace-24055cb79143804a95dede3d33d4eb15" target="_top" />
+          <area shape="rect" data-original-coords="1972,397,2517,641" coords="1972,397,2517,641" href="https://www.notion.so/Content-Planner-24855cb7914380d8931ff266451e75df?pvs=21" target="_top" />
+          <area shape="rect" data-original-coords="12,247,514,525"  coords="12,247,514,525"  href="https://www.notion.so/Resources-23155cb7914381a380f9e8af1107c381?pvs=21" target="_top" />
         </map>
       </div>
     </main>
@@ -47,7 +37,6 @@
 
         function scaleAreas() {
           if (!naturalW || !naturalH) return;
-          // Use getBoundingClientRect to handle zoom and transforms reliably
           const rect = img.getBoundingClientRect();
           const wScale = rect.width / naturalW;
           const hScale = rect.height / naturalH;
@@ -80,11 +69,9 @@
           }
         }
 
-        // Recompute on resize and on image load
         window.addEventListener('resize', scaleAreas);
         if (img.complete) init(); else img.addEventListener('load', init, { once: true });
 
-        // Optional: observe size changes (e.g., CSS changes, container resizes)
         const ro = new ResizeObserver(scaleAreas);
         ro.observe(img);
       })();
